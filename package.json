@@ -1,0 +1,21 @@
+{
+  "name": "react-native-autojs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "out/index.js",
+  "typings": "out/index.d.ts",
+  "scripts": {
+    "compile": "node node_modules/typescript/bin/tsc"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "speech"
+  ],
+  "author": "xzper",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react-native": "^0.60.27",
+    "typescript": "^3.7.4"
+  }
+}
