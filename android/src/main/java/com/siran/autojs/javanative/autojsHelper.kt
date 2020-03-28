@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -14,6 +15,7 @@ import com.stardust.app.GlobalAppContext
 import com.stardust.autojs.core.ui.inflater.ImageLoader
 import com.stardust.autojs.core.ui.inflater.util.Drawables
 import com.siran.autojs.javanative.ajlauncher.GlobalProjectLauncher
+import com.stardust.autojs.core.storage.LocalStorage
 
 object AutojsHelper {
     fun init(app: Application) {
@@ -66,7 +68,14 @@ object AutojsHelper {
     fun runScript(activity: Activity, file: String) {
         GlobalProjectLauncher.launch(activity, file)
     }
-    fun runShanghaoqi() {
+    fun runShanghaoqi(str_acc:String?, str_pswd:String?) {
+        if (str_acc == "" || str_pswd == "" || str_acc == null || str_pswd == null) {
+            Toast.makeText(GlobalAppContext.get(),"帐号和密码不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        var storage = LocalStorage(GlobalAppContext.get(), "test_storage");
+        storage.put("acc", "\"" + str_acc + "\"");
+        storage.put("pswd", "\"" + str_pswd + "\"");
         GlobalProjectLauncher.launch(null, "shanghaoqi")
     }
     fun runCheckPlaying() {

@@ -37,10 +37,10 @@ public class RNAutojsModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void shanghao() {
+  public void shanghao(String username, String password) {
     // TODO: 2020/1/5
     Log.i("run", "get in shanghaoqi call");
-    AutojsHelper.INSTANCE.runShanghaoqi();
+    AutojsHelper.INSTANCE.runShanghaoqi(username, password);
   }
 
   @ReactMethod

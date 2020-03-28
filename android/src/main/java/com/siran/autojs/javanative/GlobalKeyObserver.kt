@@ -19,6 +19,7 @@ class GlobalKeyObserver internal constructor() : OnKeyListener, ShellKeyObserver
     private var mVolumeDownFromAccessibility: Boolean = false
     private var mVolumeUpFromShell: Boolean = false
     private var mVolumeUpFromAccessibility: Boolean = false
+    private var lastVolumeUpTimeMillis: Long = 0
 
     init {
         AccessibilityService.stickOnKeyObserver
@@ -29,10 +30,12 @@ class GlobalKeyObserver internal constructor() : OnKeyListener, ShellKeyObserver
     }
 
     fun onVolumeUp() {
-        Log.d(LOG_TAG, "onVolumeUp at " + System.currentTimeMillis())
-        if (Pref.shouldStopAllScriptsWhenVolumeUp()) {
+        var curMillisTime:Long = System.currentTimeMillis()
+        Log.d(LOG_TAG, "onVolumeUp at " + curMillisTime)
+        if (Pref.shouldStopAllScriptsWhenVolumeUp() && curMillisTime - lastVolumeUpTimeMillis < 1000) {
             AutoJs.instance!!.scriptEngineService.stopAllAndToast()
         }
+        lastVolumeUpTimeMillis = curMillisTime
     }
 
     override fun onKeyEvent(keyCode: Int, event: KeyEvent) {
