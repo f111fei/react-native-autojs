@@ -1,4 +1,7 @@
 {
   "name": "zhz",
-  "displayName": "租号赚"
+  "displayName": "租号赚",
+  "expo": {
+    "scheme": "zhz"
+  }
 }
