@@ -4,7 +4,10 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import DetailScreen from './ui/screens/DetailScreen';
 import HomeScreen from './ui/screens/HomeScreen';
+import WelcomeScreen from './ui/screens/WelcomeScreen';
+import AutologinScreen from './ui/screens/AutoLoginScreen';
 import autojs from './autojs/autojs';
+import HelpScreen from './ui/screens/LoginHelp';
 
 const AppNavigator = createStackNavigator({
     home: {
@@ -17,10 +20,21 @@ const AppNavigator = createStackNavigator({
             username: id => `there, ${id}`,
             password: Number,
         },
+        
+    },
+    welcome: {
+        screen: WelcomeScreen
+    },
+    autologin: {
+        screen: AutologinScreen,
+    },
+    help: {
+        screen: HelpScreen,
     }
 }, {
-    initialRouteName: 'home',
-    headerMode: 'none'
+    initialRouteName: 'welcome',
+    headerMode: 'none',
+    headerTransparent: true
 });
 
 const NavigationContainer = createAppContainer(AppNavigator);
