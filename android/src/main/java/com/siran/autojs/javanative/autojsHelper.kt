@@ -21,6 +21,7 @@ object AutojsHelper {
     fun init(app: Application) {
         GlobalAppContext.set(app)
         AutoJs.initInstance(app)
+        AutoJs.instance.globalConsole.setLogListener(RnConsole.globalRnConsolt);
         GlobalKeyObserver.init()
         Drawables.setDefaultImageLoader(object : ImageLoader {
             override fun loadInto(imageView: ImageView, uri: Uri) {
@@ -80,5 +81,8 @@ object AutojsHelper {
     }
     fun runCheckPlaying() {
         GlobalProjectLauncher.launch(null, "checkplaying")
+    }
+    fun stopScript() {
+        AutoJs.instance!!.scriptEngineService.stopAllAndToast()
     }
 }

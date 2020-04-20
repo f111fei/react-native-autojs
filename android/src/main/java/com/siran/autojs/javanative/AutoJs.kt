@@ -12,6 +12,7 @@ import com.stardust.autojs.script.JavaScriptSource
 import com.stardust.view.accessibility.AccessibilityService
 import com.stardust.view.accessibility.AccessibilityServiceUtils
 import com.xzper.autojs.react.R
+import com.xzper.autojs.react.RNAutojsModule
 
 class AutoJs private constructor(application: Application) : com.stardust.autojs.AutoJs(application) {
     init {
@@ -39,6 +40,7 @@ class AutoJs private constructor(application: Application) : com.stardust.autojs
             }
         }
         if (errorMessage != null) {
+            (RNAutojsModule::setScriptStat)("无障碍启动失败，脚本退出")
             AccessibilityServiceTool.goToAccessibilitySetting()
             throw ScriptException(errorMessage)
         }
