@@ -15,18 +15,21 @@ const AppNavigator = createStackNavigator({
     },
     detail: {
         screen: DetailScreen,
-		path: 'zuhao.com',
+		/*path: 'zuhao.com',
 		parse: {
             username: id => `there, ${id}`,
             password: Number,
-        },
-        
+        },*/
     },
     welcome: {
         screen: WelcomeScreen
     },
     autologin: {
         screen: AutologinScreen,
+        path: 'zhz.com',
+		parse: {
+            order: Number,
+        },
     },
     help: {
         screen: HelpScreen,
