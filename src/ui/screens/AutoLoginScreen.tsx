@@ -7,7 +7,7 @@ import {
     useNavigationState,
 } from '@react-navigation/native';
 
-import { NativeEventEmitter, NativeModules, Image, Dimensions, ImageBackground, StatusBar, AppState } from 'react-native';
+import { NativeEventEmitter, NativeModules, Image, Dimensions, ImageBackground, StatusBar, AppState, Keyboard } from 'react-native';
 
 import { View, ToastAndroid, BackHandler, Platform, Text, Button, Alert, StyleSheet, TouchableHighlight } from 'react-native';
 import autojs from '../../autojs/autojs';
@@ -32,13 +32,7 @@ class AutologinScreen extends React.Component<NavigationContainerProps> {
         StatusBar.setTranslucent(true);
     }
 
-    /*componentDidUpdate() {
-        console.log("UNSAFE_componentWillReceiveProps called " + this.props.navigation?.state?.params?.order);
-        let tempid = this.props.navigation?.state?.params?.order;
-        if(typeof(tempid) != 'undefined' && this.state.loginSha1 != tempid) {
-            this.setState({loginSha1: tempid});
-        }
-    }*/
+
 
     static getDerivedStateFromProps(nextProps:NavigationContainerProps ,prevState) {
         let tempid = nextProps.navigation?.state?.params?.order;
@@ -101,6 +95,7 @@ class AutologinScreen extends React.Component<NavigationContainerProps> {
     }
 
     public render() {
+
         return (
             <View style={{ flex: 1, alignContent: 'center' }}>
                 <ImageBackground style={{ flex: 1, width: this.win.width, height: (this.scrn.height) }}
@@ -116,17 +111,17 @@ class AutologinScreen extends React.Component<NavigationContainerProps> {
 
                     <View style={{ backgroundColor: '#666666', opacity: 0.8, width: this.win.width, alignItems: 'center', justifyContent: 'center', height: 80 }}>
                         <TextInput style={{ flex: 1, alignItems: 'center', justifyContent: 'center', fontSize: 20, color: '#ffffff', width: this.win.width, textAlign: "center"}}
-                            placeholder={'请输入游戏解锁码'}
+                            placeholder={'请输入订单号'}
                             onChangeText={(sha1) => this.setState({ loginSha1: sha1 })}
                             value={this.state.loginSha1}
                         />
                     </View>
 
-                    <TouchableHighlight onPress={this.onClickHelp.bind(this)} activeOpacity={1} underlayColor='transparent'>
+{/*                     <TouchableHighlight onPress={this.onClickHelp.bind(this)} activeOpacity={1} underlayColor='transparent'>
                         <Text style={{ textAlign: 'right', fontSize: 20, color: '#ffffff', textDecorationLine: 'underline' }}>
                             {'上号帮助'}
                         </Text>
-                    </TouchableHighlight>
+                    </TouchableHighlight> */}
 
                     <View style={{ width: 500, height: this.win.height * 2 / 5 }}>
                     </View>
