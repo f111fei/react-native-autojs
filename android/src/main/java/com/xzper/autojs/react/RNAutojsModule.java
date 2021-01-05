@@ -125,6 +125,42 @@ public class RNAutojsModule extends ReactContextBaseJavaModule {
     getCurrentActivity().startActivity(string2);
   }
 
+  @ReactMethod
+  public void loginByCode(String code) {
+
+    final Intent intent = new Intent();
+    final String packagename = "com.tencent.tmgp.sgame";
+    final StringBuilder sb = new StringBuilder();
+    sb.append("com.tencent.tmgp.sgame");
+    sb.append(".wxapi.WXEntryActivity");
+    intent.setClassName(packagename, sb.toString());
+
+    final Bundle bundle = new Bundle();
+    bundle.putString("_message_token", "");
+    bundle.putString("_wxapi_sendauth_resp_state", "none");
+    bundle.putString("_wxapi_sendauth_resp_token", code);
+    bundle.putString("_mmessage_appPackage", "com.tencent.tmgp.sgame");
+    bundle.putString("_wxapi_baseresp_transaction", "");
+    bundle.putString("_wxapi_sendauth_resp_lang", "zh_CN");
+    bundle.putInt("_wxapi_command_type", 1);
+    bundle.putString("_mmessage_content", "");
+    bundle.putString("_wxapi_sendauth_resp_country", "CN");
+    bundle.putByteArray("_mmessage_checksum", "155523b587e200ff8ffb582835290172".getBytes());
+    bundle.putString("wx_token_key", "com.tencent.mm.openapi.token");
+    bundle.putBoolean("_wxapi_sendauth_resp_auth_result", false);
+    bundle.putString("_wxapi_sendauth_resp_url", "wx95a3a4d7c627e07d://oauth?code="+code +"&state=none");
+    bundle.putInt("_mmessage_sdkVersion", 637927424);
+    bundle.putInt("_wxapi_baseresp_errcode", 0);
+    bundle.putString("_wxapi_baseresp_errstr", "");
+    bundle.putString("_wxapi_baseresp_openId", "");
+
+    intent.putExtras(bundle);
+    intent.setFlags(0x18400000);
+    //intent.addFlags(268435456).addFlags(134217728);//参考的租号玩，若不对，考虑使用flg=0x18400000或者flg=0x18000000
+
+    getCurrentActivity().startActivity(intent);
+  }
+
   public static void setCheckPlayResult(int result) {
     mCheckPlayingResult = result;
     resultMutex = true;
