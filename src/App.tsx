@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, ToastAndroid, BackHandler, Platform, Text, Button, Alert, PermissionsAndroid  } from 'react-native';
+import { View, BackHandler, Platform  } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import DetailScreen from './ui/screens/DetailScreen';
 import HomeScreen from './ui/screens/HomeScreen';
 import WelcomeScreen from './ui/screens/WelcomeScreen';
 import AutologinScreen from './ui/screens/AutoLoginScreen';
-import autojs from './autojs/autojs';
+import GetScriptScreen from './ui/screens/GetScriptScreen';
 import HelpScreen from './ui/screens/LoginHelp';
 
 const AppNavigator = createStackNavigator({
@@ -27,9 +27,9 @@ const AppNavigator = createStackNavigator({
     autologin: {
         screen: AutologinScreen,
         path: 'zhz.com',
-		parse: {
-            order: Number,
-        },
+    },
+    getscriptstat: {
+        screen: GetScriptScreen,
     },
     help: {
         screen: HelpScreen,
@@ -37,14 +37,12 @@ const AppNavigator = createStackNavigator({
 }, {
     initialRouteName: 'welcome',
     headerMode: 'none',
-    headerTransparent: true
 });
 
 const NavigationContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
 
-    private lastBackPressed: number = 0;
 
     constructor(props: any) {
         super(props);
