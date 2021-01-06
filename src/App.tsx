@@ -1,22 +1,17 @@
 import React from 'react';
-import { View, ToastAndroid, BackHandler, Platform, Text, Button, Alert, PermissionsAndroid  } from 'react-native';
+import { View, ToastAndroid, BackHandler, Platform, Text, Button, Alert } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import DetailScreen from './ui/screens/DetailScreen';
 import HomeScreen from './ui/screens/HomeScreen';
-import autojs from './autojs/autojs';
+import autojs from './autojs';
 
 const AppNavigator = createStackNavigator({
     home: {
-        screen: HomeScreen
+        screen: HomeScreen,
     },
     detail: {
-        screen: DetailScreen,
-		path: 'zuhao.com',
-		parse: {
-            username: id => `there, ${id}`,
-            password: Number,
-        },
+        screen: DetailScreen
     }
 }, {
     initialRouteName: 'home',
@@ -24,6 +19,28 @@ const AppNavigator = createStackNavigator({
 });
 
 const NavigationContainer = createAppContainer(AppNavigator);
+
+const onButtonPress = () => {
+
+ 
+    //Alert.alert('点击了Button按钮');
+    
+    
+    
+    //autojs.run("amd.js");
+    //autojs.shanghao();
+    getPlayingStat();
+};
+
+async function getPlayingStat() {
+    console.log("aaaaa");
+    try {
+      const playStat = await autojs.checkplaying();
+      console.log("playStat is:" + playStat);
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
 export default class App extends React.Component {
 
@@ -54,9 +71,17 @@ export default class App extends React.Component {
         }
     }
 
+    
+
     public render() {
         return (
             <View style={{ flex: 1 }}>
+                <Text>aaa  ss</Text>
+                <Button
+                    title="我是按钮"
+                    onPress={onButtonPress}
+                    color="#841584">
+                </Button>
                 <NavigationContainer/>
             </View>
         );

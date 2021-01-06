@@ -6,8 +6,6 @@ function log(s) {
     console.log(s);
 }
 
-
-
 var tempStorage = storages.create("test_storage");
 
 var accnum = tempStorage.get("acc");
@@ -673,10 +671,7 @@ function startGame() {
 function getReadyFunc(resolve, reject) {
     log("let's go 2");
 
-    if(!launchApp("王者荣耀")){
-        toastLog("手机未安装王者荣耀，无法上号");
-            exit();
-    };
+    launchApp("王者荣耀");
     sleep(3000);
     //函数有BUG，在王者荣耀界面，currentPackage()一直返回com.android.systemui,waitForPackage()会一直阻塞，还是sleep最靠谱
     //waitForPackage("com.tencent.tmgp.sgame");
@@ -745,7 +740,7 @@ function HostingThreadFuc() {
 
 }
 
-/*events.observeKey();
+events.observeKey();
 
 var keyNames = {
     "KEYCODE_VOLUME_UP": "音量上键",
@@ -772,6 +767,16 @@ function getKeyName(code, event){
         return keyCodeStr;
     }
     return keyName;
-}*/
+}
+
+var w = floaty.rawWindow(
+    <frame gravity="center" bg="#44ffcc00">
+        <text id="text">悬浮文字</text>
+    </frame>
+);
+
+w.setSize(-1, -1);
+w.setTouchable(true);
+
 
 setInterval(HostingThreadFuc, 1000);
