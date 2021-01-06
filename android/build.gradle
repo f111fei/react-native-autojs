@@ -3,7 +3,7 @@
 buildscript {
     ext {
         buildToolsVersion = "28.0.3"
-        minSdkVersion = 17
+        minSdkVersion = 16
         compileSdkVersion = 28
         targetSdkVersion = 28
     }
@@ -34,9 +34,5 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
-
-        flatDir{
-            dirs "$rootDir/../node_modules/react-native-autojs/android/libs"
-        }
     }
 }

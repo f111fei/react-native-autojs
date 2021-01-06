@@ -28,18 +28,18 @@ export default class App extends React.Component {
     }
 
     private onBackAndroid = () => {
-        // const { dispatch, nav } = this.props;
-        // if (nav.routes.length > 1) {
-        //     dispatch(NavigationActions.back() as any);
-        //     return true;
-        // } else {
-        //     if (Date.now() - this.lastBackPressed < 2000) {
-        //         return false;
-        //     }
-        //     this.lastBackPressed = Date.now();
-        //     ToastAndroid.showWithGravity('再按一次退出程序', ToastAndroid.SHORT, ToastAndroid.CENTER);
-        //     return true;
-        // }
+        const { dispatch, nav } = this.props;
+        if (nav.routes.length > 1) {
+            dispatch(NavigationActions.back() as any);
+            return true;
+        } else {
+            if (Date.now() - this.lastBackPressed < 2000) {
+                return false;
+            }
+            this.lastBackPressed = Date.now();
+            ToastAndroid.showWithGravity('再按一次退出程序', ToastAndroid.SHORT, ToastAndroid.CENTER);
+            return true;
+        }
     }
 
     public componentDidMount() {
