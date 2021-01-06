@@ -1,8 +1,7 @@
-importClass(Packages.com.xzper.autojs.react.RNAutojsModule);
 /*function sleep(d) {
     for (var t = Date.now(); Date.now() - t <= d;);
 }*/
-RNAutojsModule.setScriptStat("正在执行");
+
 function log(s) {
     console.log(s);
 }
@@ -18,7 +17,6 @@ auto();
 
 if (!requestScreenCapture(true)) {
     toastLog("请求截图失败,程序即将退出");
-    RNAutojsModule.setScriptStat("执行失败，已退出");
     exit();
 }
 else {
@@ -698,16 +696,13 @@ function getReadyFunc(resolve, reject) {
     resolve();
 }
 
-function exitfunc(reason) {
-    RNAutojsModule.setScriptStat("脚本执行失败:" + reason);
-
+function exitfunc() {
     mainThread = null;
     threads.shutDownAll();
     jamPreventMap = {};
 }
 
 function stopScript() {
-    RNAutojsModule.setScriptStat("脚本执行成功");
     updateCancleImg.recycle();
     qqPlayImg.recycle();
     weixinPlayImg.recycle();
@@ -737,7 +732,7 @@ function HostingThreadFuc() {
                     })
                     .catch(function (reason) {
                         log('失败：' + reason);
-                        exitfunc(reason);
+                        exitfunc();
                     });
             } catch (err) {
                 console.log("catch exception:" + err);
