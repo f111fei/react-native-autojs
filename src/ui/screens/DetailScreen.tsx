@@ -1,19 +1,32 @@
 import React from 'react';
-import { Alert, NativeEventEmitter, NativeModules, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 //import { View, Text } from 'react-native';
 import { NavigationContainerProps } from 'react-navigation';
+import {
+  NavigationContainer,
+  useRoute,
+  useNavigationState,
+} from '@react-navigation/native';
+
+import { NativeEventEmitter, NativeModules, StatusBar } from 'react-native';
+
+import { View, ToastAndroid, BackHandler, Platform, Text, Button, Alert, StyleSheet, TouchableHighlight } from 'react-native';
 import autojs from '../../autojs/autojs';
 import requestMultiplePermission from '../../rnservices/QueryPermission';
+import { ScrollView } from 'react-native-gesture-handler';
 
-
-
+async function getPlayingStat() {
+  console.log("aaaaa");
+  try {
+    const playStat = await autojs.checkplaying();
+    console.log("playStat is:" + playStat);
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 
 class DetailScreen extends React.Component<NavigationContainerProps> {
   state = { log: "", scriptStat: "尚未运行" };
-
-  private eventEmitter: any;
 
   public async onClickStartLogin() {
     const password = this.props.navigation?.state?.params?.password;

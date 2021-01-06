@@ -1,13 +1,8 @@
 import React from 'react';
-import { Dimensions, Image, StatusBar, View } from 'react-native';
-import { NavigationContainerProps } from 'react-navigation';
+import { View, Text, TouchableWithoutFeedback, Image, ScrollView, TextInput, Dimensions, TouchableOpacity, TouchableHighlight, StatusBar } from 'react-native';
+import { NavigationContainerProps, withNavigation } from 'react-navigation';
 
-class WelcomeScreen extends React.Component<NavigationContainerProps, { lastclick: number }> {
-
-  win = Dimensions.get('window');
-  screen = Dimensions.get('screen');
-  
-  timer:any
+class WelcomeScreen extends React.Component<NavigationContainerProps> {
 
   constructor(props: Readonly<NavigationContainerProps<{}, {}, unknown>>) {
     super(props);
@@ -29,7 +24,7 @@ class WelcomeScreen extends React.Component<NavigationContainerProps, { lastclic
 
     return (
       <View style={{ flex: 1 }}>
-            <Image style={{ alignItems: 'center', justifyContent: 'center', width: this.screen.width , height: this.screen.height- (StatusBar.currentHeight || 0) }}
+            <Image style={{ alignItems: 'center', justifyContent: 'center', width: this.screen.width , height: this.screen.height-StatusBar.currentHeight }}
               source={require("../../images/copywel.jpg")}
               resizeMode='stretch'>
             </Image>
@@ -101,7 +96,7 @@ class WelcomeScreen extends React.Component<NavigationContainerProps, { lastclic
 
   componentDidMount() {
     this.timer = setTimeout(() => {
-      (this.props.navigation as any).replace("autologin");
+      this.props.navigation.replace("autologin");
       this.timer && clearTimeout(this.timer);
     }, 3000);
   }

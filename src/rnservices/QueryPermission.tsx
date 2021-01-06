@@ -1,8 +1,16 @@
+import React,{Component} from 'react'
 import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
     ToastAndroid,
     PermissionsAndroid,
 } from 'react-native'
 
+function show(data) {
+    ToastAndroid.show(data,ToastAndroid.SHORT)
+}
 
 export default async function requestMultiplePermission() {
     try {
@@ -19,13 +27,13 @@ export default async function requestMultiplePermission() {
         } else {
             data = data + "否\n"
         }
-        data = data + "是否同意相机权限: "
+        data = data+"是否同意相机权限: "
         if (granteds["android.permission.CAMERA"] === "granted") {
             data = data + "是\n"
         } else {
             data = data + "否\n"
         }
-        data = data + "是否同意存储权限: "
+        data = data+"是否同意存储权限: "
         if (granteds["android.permission.WRITE_EXTERNAL_STORAGE"] === "granted") {
             data = data + "是\n"
         } else {
@@ -69,7 +77,7 @@ export default class PermissionAndroidView extends Component {
         )
     }
 
-
+    
 
     async requestReadPermission() {
         try {
